@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Projetos | Portfólio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="header.css">
+    <style>
+        /* Variáveis de cor */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #4cc9f0;
+        }
+       
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        /* Seção Hero Projetos */
+        .projects-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -50px;
+            text-align: center;
+        }
+        
+        .projects-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .projects-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+        
+        /* Filtros */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+        
+        .filter-btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Grid de Projetos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            animation: fadeIn 0.6s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-tags {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .project-tag {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .project-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .project-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .project-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--dark);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #111;
+            transform: translateY(-3px);
+        }
+        
+        /* Destaque */
+        .featured-project {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .featured-project .project-image {
+            height: auto;
+        }
+        
+        .featured-project .project-content {
+            padding: 35px;
+        }
+        
+        .featured-project .project-title {
+            font-size: 1.8rem;
+        }
+        
+        /* Seção CTA */
+        .projects-cta {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            margin-top: 50px;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .projects-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .projects-cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .cta-btn i {
+            margin-left: 10px;
+        }
+
+        .projects-hero {
+            padding: 180px 0 100px; /* Aumente o padding-top para 180px */
+        }
+        
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .featured-project {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .projects-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-hero p {
+                font-size: 1rem;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                <span>EdsonVST</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre_mim.html">Sobre</a></li>
+                <li><a href="projetos.html"class="active">Projetos</a></li>
+                <li><a href="contatos.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção Hero Projetos -->
+    <section class="projects-hero">
+        <div class="container">
+            <h1>Meus Projetos</h1>
+            <p>Explore meu trabalho criativo e técnico. Cada projeto representa um desafio único e uma solção inovadora.</p>
+            
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="backend">Backend</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Grid de Projetos -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Projeto Destaque -->
+                <div class="project-card featured-project" data-category="web,frontend">
+                    <div class="project-image">
+                        <img src="image/Android_Mascote.png" alt="Site informativo">
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">Mascote do Android</h2>
+                        <p class="project-description">
+                            Este site apresenta a história completa do mascote Android, desde sua concepção até se tornar um ícone global. Com layout organizado e ilustrações, explica a origem do robô verde e sua evolução. Detalha curiosidades sobre as versões nomeadas com doces e o papel do designer Irina Blok. O destaque fica para a criação do Bugdroid, símbolo atual do sistema. O design clean e informativo torna a experiência de leitura fluida e acessível. Uma ótima fonte para entusiastas de tecnologia e curiosos sobre cultura digital. O projeto demonstra ainda habilidades em HTML/CSS, unindo conteúdo e técnica de forma harmoniosa.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="https://edsonvst.github.io/HTML_CSS/Exercicios/Android_Mascote/Android..html" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Projeto
+                            </a>
+                            <a href="https://github.com/EdsonVST/HTML_CSS/tree/main/Exercicios/Android_Mascote" class="btn btn-secondary" >
+                                <i class="fab fa-github"></i> Código Fonte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 2 -->
+                <div class="project-card" data-category="web,frontend">
+                    <div class="project-image">
+                        <img src="image/Cordel_Moderno.png" alt="Site informativo">
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">Cordel Moderno</h2>
+                        <p class="project-description">
+                            Este site apresenta o poema Cordel Moderno, de Milton Duarte, com um design que mistura tradição e inovação. Através de efeitos visuais e parallax, o texto ganha vida, fundindo literatura popular e estética digital. Uma experiência imersiva que celebra a cultura nordestina no universo web.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="https://edsonvst.github.io/HTML_CSS/Exercicios/Cordel_Moderno/index.html" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Projeto
+                            </a>
+                            <a href="https://github.com/EdsonVST/HTML_CSS/tree/main/Exercicios/Cordel_Moderno" class="btn btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> Código Fonte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 3 -->
+                <div class="project-card" data-category="web,frontend">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Dashboard Analytics">
+                        <div class="project-tags">
+                            <span class="project-tag">Angular</span>
+                            <span class="project-tag">D3.js</span>
+                            <span class="project-tag">API REST</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">Dashboard de Analytics</h2>
+                        <p class="project-description">
+                            Painel de business intelligence com visualizações interativas de dados. Integração com múltiplas fontes de dados e atualização em tempo real.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Projeto
+                            </a>
+                            <a href="#" class="btn btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> Código Fonte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 4 -->
+                <div class="project-card" data-category="backend">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="API de Pagamentos">
+                        <div class="project-tags">
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Stripe API</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">API de Pagamentos</h2>
+                        <p class="project-description">
+                            Microsserviço para processamento de pagamentos com múltiplos gateways. Documentação Swagger completa e testes automatizados com 95% de coverage.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Projeto
+                            </a>
+                            <a href="#" class="btn btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> Código Fonte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 5 -->
+                <div class="project-card" data-category="web,frontend,backend">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="E-commerce">
+                        <div class="project-tags">
+                            <span class="project-tag">Vue.js</span>
+                            <span class="project-tag">Laravel</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">Loja Virtual</h2>
+                        <p class="project-description">
+                            Plataforma de e-commerce com carrinho de compras, checkout seguro e painel administrativo. Otimizada para SEO e performance.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Projeto
+                            </a>
+                            <a href="#" class="btn btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> Código Fonte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 6 -->
+                <div class="project-card" data-category="backend">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="API de Autenticação">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">JWT</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">Sistema de Autenticação</h2>
+                        <p class="project-description">
+                            API segura de autenticação com JWT, recuperação de senha e autenticação em dois fatores. Implementação de roles e permissions.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Projeto
+                            </a>
+                            <a href="#" class="btn btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> Código Fonte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção CTA -->
+    <section class="projects-cta">
+        <div class="container">
+            <h2>Interessado no meu trabalho?</h2>
+            <p>Estou disponível para novos projetos e oportunidades. Vamos conversar sobre como posso ajudar no seu próximo desafio!</p>
+            <a href="contatos.html" class="cta-btn">
+                Entrar em Contato <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Filtro de projetos funcional
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove a classe active de todos os botões
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Adiciona a classe active ao botão clicado
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filtra os projetos
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(',');
+                        
+                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                            card.style.display = 'flex';
+                            card.style.animation = 'fadeIn 0.6s ease-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Reorganiza o grid para projetos em destaque
+                    rearrangeFeaturedProjects();
+                });
+            });
+            
+            // Animação de flutuação para os cards
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.addEventListener('mouseenter', function() {
+                    this.style.animation = 'float 3s ease-in-out infinite';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Função para reorganizar projetos em destaque após filtragem
+            function rearrangeFeaturedProjects() {
+                const visibleFeaturedProjects = document.querySelectorAll('.project-card.featured-project[style="display: flex;"]');
+                
+                visibleFeaturedProjects.forEach(project => {
+                    // Verifica se o projeto está visível e é destacado
+                    if (project.style.display === 'flex' && project.classList.contains('featured-project')) {
+                        // Remove o destaque se for o único projeto visível na categoria
+                        const category = project.getAttribute('data-category');
+                        const visibleProjectsInCategory = document.querySelectorAll(`.project-card[data-category*="${category}"][style="display: flex;"]`);
+                        
+                        if (visibleProjectsInCategory.length === 1) {
+                            project.classList.remove('featured-project');
+                            project.style.gridColumn = '';
+                            project.style.gridTemplateColumns = '';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+<script src="header.js" defer></script>
+</body>
+</html>

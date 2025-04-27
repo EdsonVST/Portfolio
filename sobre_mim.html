@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim | Portfólio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="header.css">
+    <style>
+        /* Variáveis de cor */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #4cc9f0;
+        }
+        
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        /* Seção Hero Sobre Mim */
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -50px;
+        }
+        
+        .about-hero .container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: rotate(-5deg);
+            transition: all 0.5s ease;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .profile-image:hover {
+            transform: rotate(0deg) scale(1.03);
+        }
+        
+        .hero-content {
+            flex: 1;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tag {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Seção Minha Jornada */
+        .journey-section {
+            padding-top: 50px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: var(--primary);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 80px;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 80px;
+        }
+        
+        .timeline-content {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .timeline-company {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .timeline-desc {
+            text-align: justify;
+            text-indent: 30px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .timeline-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: var(--primary);
+            font-size: 1.3rem;
+            top: 30px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-icon {
+            right: -25px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-icon {
+            left: -25px;
+        }
+        
+        /* Habilidades */
+        .skills-section {
+            background: var(--dark);
+            color: white;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+            padding: 150px 0 100px;
+            margin-top: -50px;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .skill-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .skill-desc {
+            opacity: 0.8;
+            line-height: 1.7;
+            text-align: justify;
+            text-indent: 30px;
+        }
+
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-hero {
+        padding: 180px 0 100px; /* Aumente o padding-top para 180px */
+        }   
+        
+        /* Ajustando os delays para animação em sequência */
+        .timeline-item:nth-child(1) { transition-delay: 0.1s; }
+        .timeline-item:nth-child(2) { transition-delay: 0.3s; }
+        .timeline-item:nth-child(3) { transition-delay: 0.5s; }
+        .timeline-item:nth-child(4) { transition-delay: 0.7s; }
+        
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .about-hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tag-list {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 90px;
+                padding-right: 20px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                text-align: left;
+                padding-right: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-icon,
+            .timeline-item:nth-child(even) .timeline-icon {
+                left: 15px;
+                right: auto;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                <span>EdsonVST</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre_mim.html" class="active">Sobre</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="contatos.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Seção Hero Sobre Mim -->
+    <section class="about-hero">
+        <div class="container">
+            <img src="image/edson.jpg" alt="Seu Nome" class="profile-image">
+            <div class="hero-content">
+                <h1>Desenvolvedor Fullstack</h1>
+                <p>Sou apaixonado por criar soluções tecnológicas que resolvem problemas reais. Com experiência em desenvolvimento web e mobile, busco sempre aprender e me adaptar às novas tecnologias.</p>
+                
+                <div class="tag-list">
+                    <span class="tag">Analista de Dados</span>
+                    <span class="tag">Engenheiro</span>
+                    <span class="tag">Suporte</span>
+                    <span class="tag">Técnico de Edificações</span>
+                    <span class="tag">Desenvolvedor</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/EdsonVST" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/edson-vinicio-silva-459675298/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter" target="_blank"></i></a>
+                    <a href="https://www.instagram.com/edson_vinicio/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Minha Jornada -->
+    <section class="journey-section">
+        <div class="container">
+            <h2 class="section-title">Minha Jornada</h2>
+            
+            <div class="timeline">
+                <!-- Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2019 - 2021</span>
+                        <h3 class="timeline-title">Edificações</h3>
+                        <span class="timeline-company">Curso Técnico</span>
+                        <p class="timeline-desc">Adquiri sólidos conhecimentos em projetos arquitetônicos (AutoCAD, SketchUp), gestão de obras e normas técnicas (ABNT/NRs). Aprendi na prática sobre compatibilização de projetos, topografia e controle de qualidade em canteiros. O curso despertou meu interesse por desafios que exigem criatividade e soluções inovadoras, motivando minha transição para a Engenharia da Computação, onde posso explorar minha paixão por tecnologia e desenvolvimento de sistemas inteligentes.</p>
+                    </div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - 2022</span>
+                        <h3 class="timeline-title">Auxiliar de Montagem e Instalação</h3>
+                        <span class="timeline-company">Esquadriclass</span>
+                        <p class="timeline-desc">Na Esquadriclass, adquiri experiência prática em produção industrial e desenvolvi sistemas de controle através de planilhas avançadas. Essa vivência, onde aprimorei comunicação e trabalho em equipe ao lidar com diversos setores, foi decisiva: percebi como a tecnologia poderia otimizar processos industriais, despertando minha paixão pela área tech e definindo minha transição para a Engenharia da Computação.</p>
+                    </div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - Presente</span>
+                        <h3 class="timeline-title">Engenharia de Computação</h3>
+                        <span class="timeline-company">Formação Acadêmica</span>
+                        <p class="timeline-desc">Minha formação em Engenharia de Computação foi o pontapé inicial na carreira de desenvolvimento, onde aprofundei conhecimentos em programação, sistemas embarcados e análise de dados. Através de projetos acadêmicos, desenvolvi habilidades práticas para transformar problemas complexos em soluções tecnológicas, despertando minha paixão por desenvolvimento de software e data science.</p>
+                    </div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 - Presente</span>
+                        <h3 class="timeline-title">Suporte Técnico</h3>
+                        <span class="timeline-company">Metafilm</span>
+                        <p class="timeline-desc">Atuo no gerenciamento de acessos dos sistemas Datasul, RM, Gládios e TMS, com expertise em processos fiscais, além de solucionar problemas de hardware e software. Documento incidentes e implemento melhorias, desenvolvendo habilidades essenciais em TI enquanto presto suporte direto aos usuários, combinando conhecimento técnico com atendimento ao cliente.</p>
+                    </div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Habilidades -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Minhas Habilidades</h2>
+            
+            <div class="skills-container">
+                <!-- Habilidade 1 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-gears"></i>
+                    </div>
+                    <h3 class="skill-title">Desenvolvimento Backend</h3>
+                    <p class="skill-desc">Desenvolvo APIs RESTful em Python/Java/C++ para integração de sistemas, com expertise em SQL e arquitetura escalável aplicada em projetos corporativos e pessoais.</p>
+                </div>
+                
+                <!-- Habilidade 2 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="skill-title">Frontend Moderno</h3>
+                    <p class="skill-desc">Dominio em desenvolvimento interfaces intuitivas com JavaScript, HTML/CSS, focando em UX/UI e responsividade para criar experiências digitais fluidas e acessíveis.</p>
+                </div>
+                
+                <!-- Habilidade 3 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="skill-title">Banco de Dados</h3>
+                    <p class="skill-desc">Projeto e otimização de bancos de dados relacionais com MySQL, incluindo consultas complexas e normalização.</p>
+                </div>
+                
+                <!-- Habilidade 4 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="skill-title">Analize de Dados</h3>
+                    <p class="skill-desc">Experiência em análise de dados com Python e SQL, utilizando Power BI para transformar dados em insights estratégicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Script para animação ao scroll
+
+document.addEventListener('DOMContentLoaded', function() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    function checkVisibility() {
+        timelineItems.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (itemTop < windowHeight * 0.8) {
+                item.classList.add('visible');
+            }
+        });
+    }
+    
+    // Verifica na carga inicial
+    checkVisibility();
+    
+    // Verifica durante o scroll
+    window.addEventListener('scroll', checkVisibility);
+});
+
+    </script>
+<script src="header.js" defer></script>
+</body>
+</html>
