@@ -7,7 +7,7 @@ Portfólio profissional de Edson Vinicio Silva Taveira, **Desenvolvedor Fullstac
 ## 🚀 Como Executar
 ### Opção 1: GitHub Pages
 Acesse diretamente:  
-🔗 [https://edsonvst.github.io/portfolio](https://edsonvst.github.io/portfolio)
+🔗 [https://edsonvst.github.io/portfolio](https://edsonvst.github.io/Portfolio/index.html)
 
 
 ## 🛠️ Tecnologias Utilizadas
