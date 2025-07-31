@@ -46,11 +46,15 @@
             position: relative;
         }
         
+        a {
+            color: white;
+        }
+        
         /* Seção Hero Sobre Mim */
         .about-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 150px 0 100px;
+            padding: 180px 0 100px;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             margin-bottom: -50px;
         }
@@ -178,6 +182,14 @@
             position: relative;
             width: 50%;
             animation: fadeIn 0.6s ease-out;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .timeline-item:nth-child(odd) {
@@ -264,8 +276,8 @@
             left: -25px;
         }
         
-        /* Habilidades */
-        .skills-section {
+        /* Seção de Conhecimentos */
+        .knowledge-section {
             background: var(--dark);
             color: white;
             clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
@@ -273,66 +285,207 @@
             margin-top: -50px;
         }
         
-        .skills-container {
+        .knowledge-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        .skill-card {
+        .knowledge-card {
             background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s ease;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+            will-change: transform;
         }
         
-        .skill-card:hover {
-            transform: translateY(-10px);
+        .knowledge-card:hover {
+            transform: translateY(-5px);
             background: rgba(255,255,255,0.1);
             border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        .skill-icon {
-            font-size: 2.5rem;
+        .knowledge-icon {
+            font-size: 2rem;
             color: var(--accent);
-            margin-bottom: 20px;
-        }
-        
-        .skill-title {
-            font-size: 1.3rem;
             margin-bottom: 15px;
         }
         
-        .skill-desc {
+        .knowledge-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .knowledge-level {
+            font-size: 0.9rem;
             opacity: 0.8;
-            line-height: 1.7;
-            text-align: justify;
-            text-indent: 30px;
         }
-
-        .timeline-item {
+        
+        /* Modal de Conhecimentos */
+        .knowledge-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(26, 26, 46, 0);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease-out;
+            visibility: hidden;
+            transition: opacity 0.4s ease, background-color 0.4s ease;
+            padding: 20px;
         }
         
-        .timeline-item.visible {
+        .knowledge-modal-overlay.active {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
+            background-color: rgba(26, 26, 46, 0.95);
         }
-
-        .about-hero {
-        padding: 180px 0 100px; /* Aumente o padding-top para 180px */
-        }   
         
-        /* Ajustando os delays para animação em sequência */
-        .timeline-item:nth-child(1) { transition-delay: 0.1s; }
-        .timeline-item:nth-child(2) { transition-delay: 0.3s; }
-        .timeline-item:nth-child(3) { transition-delay: 0.5s; }
-        .timeline-item:nth-child(4) { transition-delay: 0.7s; }
+        .knowledge-modal-content {
+            background: rgba(31, 55, 201, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--accent);
+            box-shadow: 0 15px 50px rgba(76, 201, 240, 0.3);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.4s ease;
+            position: relative;
+        }
+        
+        .knowledge-modal-overlay.active .knowledge-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .knowledge-modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(76, 201, 240, 0.3);
+            padding-bottom: 20px;
+        }
+        
+        .knowledge-modal-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-right: 25px;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .knowledge-modal-title {
+            font-size: 2.2rem;
+            color: white;
+            margin: 0;
+        }
+        
+        .knowledge-modal-level {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .knowledge-modal-body {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .knowledge-modal-body p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .knowledge-modal-body ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .knowledge-modal-body li {
+            margin-bottom: 8px;
+        }
+        
+        .knowledge-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .knowledge-modal-close:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        
+        /* Filtros */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+        
+        .filter-btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .filter-btn.active {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Efeito de clone para animação */
+        .card-clone {
+            position: fixed;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
         
         /* Responsivo */
         @media (max-width: 992px) {
@@ -382,8 +535,53 @@
                 left: 15px;
                 right: auto;
             }
-
+            
+            .knowledge-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .knowledge-modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+            
+            .knowledge-modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .knowledge-modal-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+                font-size: 2.5rem;
+            }
+            
+            .knowledge-modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .knowledge-modal-body {
+                font-size: 1rem;
+            }
+            
+            .goal-card {
+                padding: 30px 20px;
+            }
+            
+            .goal-title {
+                font-size: 1.5rem;
+            }
+            
+            .goal-desc {
+                font-size: 1rem;
+            }
         }
+        
+        /* Ajustando os delays para animação em sequência */
+        .timeline-item:nth-child(1) { transition-delay: 0.1s; }
+        .timeline-item:nth-child(2) { transition-delay: 0.3s; }
+        .timeline-item:nth-child(3) { transition-delay: 0.5s; }
+        .timeline-item:nth-child(4) { transition-delay: 0.7s; }
     </style>
 </head>
 <body>
@@ -402,18 +600,18 @@
             </ul>
         </nav>
     </header>
+    
     <!-- Seção Hero Sobre Mim -->
     <section class="about-hero">
         <div class="container">
-            <img src="image/edson.jpg" alt="Seu Nome" class="profile-image">
+            <img src="image/edson.jpg" alt="Edson Vinicio" class="profile-image">
             <div class="hero-content">
                 <h1>Desenvolvedor Fullstack</h1>
-                <p class="timeline-desc-p">Estudante do 2° período de Engenharia da Computação pela <a href="https://facens.br/" target="_blank">facens</a>, encontro na tecnologia o motor para transformar desafios em soluções inovadoras. Minha paixão por lógica, aliada à crescente experiência em desenvolvimento de software e análise de dados, me permite explorar as últimas tendências e criar aplicações que realmente façam a diferença.</p>
+                <p class="timeline-desc-p">Estudante do 6° semestre de Engenharia da Computação pela <a href="https://facens.br/" target="_blank" class="timeline-desc-p" >facens</a>, encontro na tecnologia o motor para transformar desafios em soluções inovadoras. Minha paixão por lógica, aliada à crescente experiência em desenvolvimento de software e análise de dados, me permite explorar as últimas tendências e criar aplicações que realmente façam a diferença.</p>
                 
                 <div class="tag-list">
                     <span class="tag">Analista de Dados</span>
-                    <span class="tag">Engenheiro</span>
-                    <span class="tag">Suporte</span>
+                    <span class="tag">Técnico de Suporte</span>
                     <span class="tag">Desenvolvedor</span>
                     <span class="tag">Técnico de Edificações</span>
                 </div>
@@ -439,7 +637,7 @@
                         <span class="timeline-date">2019 - 2021</span>
                         <h3 class="timeline-title">Edificações</h3>
                         <span class="timeline-company">Curso Técnico</span>
-                        <p class="timeline-desc">A formação me proporcionou um conhecimento robusto em criação de projetos <b>(AutoCAD, SketchUp)</b>, gestão e normas técnicas (ABNT/NRs). A vivência prática em <b>topografia</b> e <b>controle de qualidade</b> consolidou esse aprendizado teórico, e foi nesse ambiente dinâmico que meu interesse por desafios criativos e soluções inovadoras floresceu. Ali, minhas habilidades comunicativas e comportamentais foram aprimoradas ao máximo, representando um ponto crucial no meu desenvolvimento pessoal.</p>
+                        <p class="timeline-desc">Está formação me proporcionou um conhecimento robusto em criação de projetos <b>(AutoCAD, SketchUp)</b>, gestão e normas técnicas (ABNT/NRs). A vivência prática em <b>topografia</b> e <b>controle de qualidade</b> consolidou esse aprendizado teórico, e foi nesse ambiente dinâmico que meu interesse por desafios criativos e soluções inovadoras floresceu. Ali, minhas habilidades comunicativas e comportamentais foram aprimoradas ao máximo, representando um ponto crucial no meu desenvolvimento pessoal.</p>
                     </div>
                     <div class="timeline-icon">
                         <i class="fas fa-graduation-cap"></i>
@@ -488,75 +686,527 @@
         </div>
     </section>
     
-    <!-- Seção Habilidades -->
-    <section class="skills-section">
+    <!-- Seção Conhecimentos Técnicos -->
+    <section class="knowledge-section">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Minhas Habilidades</h2>
+            <h2 class="section-title" style="color: white;">Conhecimentos Técnicos</h2>
             
-            <div class="skills-container">
-                <!-- Habilidade 1 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-gears"></i>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Programação">Programação</button>
+                <button class="filter-btn" data-filter="Sistemas">Sistemas</button>
+                <button class="filter-btn" data-filter="Software">Software</button>
+                <button class="filter-btn" data-filter="Escritório">Escritório</button>
+            </div>
+            
+            <div class="knowledge-container">
+                <!-- Python -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="python">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fab fa-python"></i></div>
+                        <h3 class="knowledge-title">Python</h3>
+                        <p class="knowledge-level">Intermediário</p>
                     </div>
-                    <h3 class="skill-title">Desenvolvimento Backend</h3>
-                    <p class="skill-desc">Construção de lógica de serviços, integrando bancos de dados e <b>APIs</b> para sistemas eficientes e seguros. Meu foco é desenvolver soluções escaláveis que sustentem aplicações de alto desempenho com máxima segurança e eficiência.</p>
                 </div>
                 
-                <!-- Habilidade 2 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-laptop-code"></i>
+                <!-- Java -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="java">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fab fa-java"></i></div>
+                        <h3 class="knowledge-title">Java</h3>
+                        <p class="knowledge-level">Intermediário</p>
                     </div>
-                    <h3 class="skill-title">Frontend Moderno</h3>
-                    <p class="skill-desc">Desenvolvendo interfaces intuitivas e responsivas com <b>JavaScript</b>, <b>HTML</b> e <b>CSS</b>, priorizando a experiência do usuário (UX/UI) para criar jornadas digitais fluidas e acessíveis.</p>
                 </div>
                 
-                <!-- Habilidade 3 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-chart-line"></i>
+                <!-- JavaScript -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="javascript">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fab fa-js"></i></div>
+                        <h3 class="knowledge-title">JavaScript</h3>
+                        <p class="knowledge-level">Intermediário</p>
                     </div>
-                    <h3 class="skill-title">Analize de Dados</h3>
-                    <p class="skill-desc">Desenvolvo e otimizo bancos de dados relacionais, criando desde consultas complexas até modelos normalizados eficientes. Aplico Python e SQL na análise de dados para identificar insights estratégicos valiosos apresentando resultados de forma clara através de ferramentas como Power BI.</p>
                 </div>
-                <!-- Habilidade 4 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-drafting-compass"></i>
+                
+                <!-- SQL -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="sql">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-database"></i></div>
+                        <h3 class="knowledge-title">SQL</h3>
+                        <p class="knowledge-level">Intermediário</p>
                     </div>
-                    <h3 class="skill-title">Edificações</h3>
-                    <p class="skill-desc">Elaboro plantas elétricas e hidráulicas detalhadas, desenvolvo projetos estruturais robustos e crio designs de interiores funcionais e esteticamente agradáveis. Garanto a conformidade com normas técnicas e a otimização de espaços.</p>
+                </div>
+                
+                <!-- C/C++ -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="cpp">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="knowledge-title">C/C++</h3>
+                        <p class="knowledge-level">Básico</p>
+                    </div>
+                </div>
+                
+                <!-- Arduino -->
+                <div class="knowledge-card" data-category="Software" data-knowledge="arduino">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-microchip"></i></div>
+                        <h3 class="knowledge-title">Arduino</h3>
+                        <p class="knowledge-level">Intermediário</p>
+                    </div>
+                </div>
+                
+                <!-- Pacote Office -->
+                <div class="knowledge-card" data-category="Escritório" data-knowledge="office">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-file-excel"></i></div>
+                        <h3 class="knowledge-title">Pacote Office</h3>
+                        <p class="knowledge-level">Avançado</p>
+                    </div>
+                </div>
+                
+                <!-- Datasul -->
+                <div class="knowledge-card" data-category="Sistemas" data-knowledge="datasul">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-industry"></i></div>
+                        <h3 class="knowledge-title">Datasul</h3>
+                        <p class="knowledge-level">Intermediário</p>
+                    </div>
+                </div>
+                
+                <!-- RM -->
+                <div class="knowledge-card" data-category="Sistemas" data-knowledge="rm">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-cogs"></i></div>
+                        <h3 class="knowledge-title">RM</h3>
+                        <p class="knowledge-level">Intermediário</p>
+                    </div>
+                </div>
+                
+                <!-- TMS -->
+                <div class="knowledge-card" data-category="Sistemas" data-knowledge="tms">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-truck"></i></div>
+                        <h3 class="knowledge-title">TMS</h3>
+                        <p class="knowledge-level">Intermediário</p>
+                    </div>
+                </div>
+                
+                <!-- AutoCAD -->
+                <div class="knowledge-card" data-category="Software" data-knowledge="autocad">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-ruler-combined"></i></div>
+                        <h3 class="knowledge-title">AutoCAD</h3>
+                        <p class="knowledge-level">Avançado</p>
+                    </div>
+                </div>
+                
+                <!-- SketchUp -->
+                <div class="knowledge-card" data-category="Software" data-knowledge="sketchup">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-cube"></i></div>
+                        <h3 class="knowledge-title">SketchUp</h3>
+                        <p class="knowledge-level">Avançado</p>
+                    </div>
+                </div>
+                
+                <!-- 3ds Max -->
+                <div class="knowledge-card" data-category="Software" data-knowledge="3dsmax">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-cubes"></i></div>
+                        <h3 class="knowledge-title">3ds Max</h3>
+                        <p class="knowledge-level">Básico</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    <!-- Modal de Conhecimentos -->
+    <div id="knowledgeModal" class="knowledge-modal-overlay">
+        <div class="knowledge-modal-content">
+            <span class="knowledge-modal-close">&times;</span>
+            <div class="knowledge-modal-header">
+                <div class="knowledge-modal-icon" id="modalIcon"></div>
+                <div>
+                    <h2 class="knowledge-modal-title" id="modalTitle"></h2>
+                    <span class="knowledge-modal-level" id="modalLevel"></span>
+                </div>
+            </div>
+            <div class="knowledge-modal-body" id="modalBody"></div>
+        </div>
+    </div>
 
     <script>
-        // Script para animação ao scroll
-
-document.addEventListener('DOMContentLoaded', function() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    
-    function checkVisibility() {
-        timelineItems.forEach(item => {
-            const itemTop = item.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (itemTop < windowHeight * 0.8) {
-                item.classList.add('visible');
+        // Banco de dados de conhecimentos com descrições detalhadas
+        const knowledgeDB = {
+            python: {
+                title: "Python",
+                icon: '<i class="fab fa-python"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Minha principal ferramenta para análise de dados e automação de processos. Tenho experiência com:</p>
+                    <ul>
+                        <li>Desenvolvimento de scripts para tratamento e análise de grandes volumes de dados</li>
+                        <li>Criação de APIs REST com Flask e FastAPI</li>
+                        <li>Automação de tarefas repetitivas e extração de dados de diversas fontes</li>
+                        <li>Implementação de algoritmos de machine learning básicos</li>
+                        <li>Integração com bancos de dados relacionais e NoSQL</li>
+                    </ul>
+                    <p>Utilizo frequentemente bibliotecas como Pandas, NumPy, Matplotlib e Requests para resolver problemas complexos de forma eficiente.</p>
+                `
+            },
+            java: {
+                title: "Java",
+                icon: '<i class="fab fa-java"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Linguagem que utilizo para desenvolvimento de aplicações robustas e escaláveis:</p>
+                    <ul>
+                        <li>Experiência com Spring Boot para criação de APIs RESTful</li>
+                        <li>Domínio dos princípios SOLID e padrões de projeto</li>
+                        <li>Desenvolvimento de aplicações desktop com JavaFX</li>
+                        <li>Conhecimento em multithreading e programação concorrente</li>
+                        <li>Integração com sistemas legados e bancos de dados</li>
+                    </ul>
+                    <p>Meus projetos acadêmicos incluem sistemas de gerenciamento com arquitetura em camadas e boas práticas de engenharia de software.</p>
+                `
+            },
+            javascript: {
+                title: "JavaScript",
+                icon: '<i class="fab fa-js"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>A linguagem que me permite criar experiências web interativas e dinâmicas:</p>
+                    <ul>
+                        <li>Desenvolvimento front-end com manipulação do DOM e eventos</li>
+                        <li>Consumo de APIs REST/GraphQL para aplicações web modernas</li>
+                        <li>Implementação de lógica de interface complexa</li>
+                        <li>Validação de formulários e feedback ao usuário</li>
+                        <li>Conhecimento em ES6+ e padrões modernos de JavaScript</li>
+                    </ul>
+                    <p>Utilizo JavaScript para tornar interfaces estáticas em experiências ricas e responsivas.</p>
+                `
+            },
+            sql: {
+                title: "SQL",
+                icon: '<i class="fas fa-database"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Minha ferramenta essencial para trabalhar com bancos de dados relacionais:</p>
+                    <ul>
+                        <li>Modelagem e normalização de bancos de dados</li>
+                        <li>Criação de queries complexas com múltiplos joins</li>
+                        <li>Otimização de consultas para melhor desempenho</li>
+                        <li>Implementação de stored procedures e triggers</li>
+                        <li>Migração e transformação de dados entre sistemas</li>
+                    </ul>
+                    <p>Experiência prática com MySQL, SQL Server e PostgreSQL em projetos acadêmicos e profissionais.</p>
+                `
+            },
+            cpp: {
+                title: "C/C++",
+                icon: '<i class="fas fa-code"></i>',
+                level: "Básico",
+                description: `
+                    <p>Linguagens fundamentais que me ensinaram os conceitos essenciais da programação:</p>
+                    <ul>
+                        <li>Desenvolvimento de algoritmos e estruturas de dados</li>
+                        <li>Gerenciamento manual de memória e ponteiros</li>
+                        <li>Programação orientada a objetos em C++</li>
+                        <li>Interação com hardware de baixo nível</li>
+                        <li>Conceitos de compilação e linking</li>
+                    </ul>
+                    <p>Utilizei principalmente em projetos acadêmicos e para entender os fundamentos da computação.</p>
+                `
+            },
+            arduino: {
+                title: "Arduino",
+                icon: '<i class="fas fa-microchip"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Plataforma que me permite prototipar soluções de hardware e IoT:</p>
+                    <ul>
+                        <li>Desenvolvimento de sistemas embarcados básicos</li>
+                        <li>Integração com sensores e atuadores diversos</li>
+                        <li>Comunicação serial com computadores</li>
+                        <li>Projetos de automação residencial simples</li>
+                        <li>Monitoramento ambiental com coleta de dados</li>
+                    </ul>
+                    <p>Experiência em projetos acadêmicos envolvendo controle de dispositivos e automação.</p>
+                `
+            },
+            office: {
+                title: "Pacote Office",
+                icon: '<i class="fas fa-file-excel"></i>',
+                level: "Avançado",
+                description: `
+                    <p>Suíte de produtividade que domino profundamente:</p>
+                    <ul>
+                        <li>Excel avançado com fórmulas complexas, tabelas dinâmicas e macros VBA</li>
+                        <li>Criação de documentos profissionais no Word com estilos e modelos</li>
+                        <li>Apresentações dinâmicas no PowerPoint com animações e design</li>
+                        <li>Automação de fluxos de trabalho entre aplicativos</li>
+                        <li>Criação de dashboards e relatórios analíticos</li>
+                    </ul>
+                    <p>Utilizo essas ferramentas diariamente para análise de dados e documentação profissional.</p>
+                `
+            },
+            datasul: {
+                title: "Datasul",
+                icon: '<i class="fas fa-industry"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Sistema ERP que utilizo no suporte técnico profissional:</p>
+                    <ul>
+                        <li>Gerenciamento de usuários e perfis de acesso</li>
+                        <li>Resolução de problemas em módulos fiscais e financeiros</li>
+                        <li>Parametrização básica do sistema</li>
+                        <li>Extração de relatórios e dados</li>
+                        <li>Integração com outros sistemas corporativos</li>
+                    </ul>
+                    <p>Experiência prática no suporte diário aos usuários e manutenção do sistema.</p>
+                `
+            },
+            rm: {
+                title: "RM",
+                icon: '<i class="fas fa-cogs"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Sistema de gestão de relacionamento que domino no contexto profissional:</p>
+                    <ul>
+                        <li>Configuração e manutenção do sistema</li>
+                        <li>Gerenciamento de acessos e segurança</li>
+                        <li>Resolução de problemas e inconsistências</li>
+                        <li>Extração e análise de dados do sistema</li>
+                        <li>Integração com outros sistemas corporativos</li>
+                    </ul>
+                    <p>Atuação direta no suporte técnico e manutenção do sistema em ambiente profissional.</p>
+                `
+            },
+            tms: {
+                title: "TMS",
+                icon: '<i class="fas fa-truck"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Sistema de gerenciamento de transporte com que trabalho atualmente:</p>
+                    <ul>
+                        <li>Configuração de rotas e parâmetros de frete</li>
+                        <li>Monitoramento de frotas e entregas</li>
+                        <li>Resolução de problemas operacionais</li>
+                        <li>Geração de relatórios e indicadores</li>
+                        <li>Integração com outros sistemas logísticos</li>
+                    </ul>
+                    <p>Experiência prática no suporte diário aos usuários e operação do sistema.</p>
+                `
+            },
+            autocad: {
+                title: "AutoCAD",
+                icon: '<i class="fas fa-ruler-combined"></i>',
+                level: "Avançado",
+                description: `
+                    <p>Ferramenta de CAD que utilizo para projetos técnicos precisos:</p>
+                    <ul>
+                        <li>Desenho de plantas arquitetônicas em 2D</li>
+                        <li>Desenvolvimento de projetos elétricos e hidráulicos</li>
+                        <li>Criação de detalhes construtivos</li>
+                        <li>Modelagem 3D básica de elementos arquitetônicos</li>
+                        <li>Configuração de layouts e impressão profissional</li>
+                    </ul>
+                    <p>Utilizado em projetos acadêmicos e profissionais na área de edificações.</p>
+                `
+            },
+            sketchup: {
+                title: "SketchUp",
+                icon: '<i class="fas fa-cube"></i>',
+                level: "Avançado",
+                description: `
+                    <p>Ferramenta de modelagem 3D que domino para visualização arquitetônica:</p>
+                    <ul>
+                        <li>Modelagem volumétrica de edificações</li>
+                        <li>Criação de cenários e contextos urbanos</li>
+                        <li>Utilização de componentes dinâmicos</li>
+                        <li>Renderização básica com V-Ray</li>
+                        <li>Apresentação de projetos para clientes</li>
+                    </ul>
+                    <p>Utilizado para desenvolvimento de projetos acadêmicos e maquetes eletrônicas.</p>
+                `
+            },
+            "3dsmax": {
+                title: "3ds Max",
+                icon: '<i class="fas fa-cubes"></i>',
+                level: "Básico",
+                description: `
+                    <p>Software de modelagem 3D avançada que estou aprendendo:</p>
+                    <ul>
+                        <li>Modelagem poligonal básica</li>
+                        <li>Aplicação de materiais e texturas</li>
+                        <li>Configuração de iluminação simples</li>
+                        <li>Renderização básica with Scanline</li>
+                        <li>Criação de animações simples</li>
+                    </ul>
+                    <p>Conhecimento inicial adquirido em cursos e projetos pessoais de aprendizagem.</p>
+                `
             }
-        });
-    }
-    
-    // Verifica na carga inicial
-    checkVisibility();
-    
-    // Verifica durante o scroll
-    window.addEventListener('scroll', checkVisibility);
-});
+        };
 
+        // Controle da animação refinada
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalOverlay = document.getElementById('knowledgeModal');
+            const modalContent = document.querySelector('.knowledge-modal-content');
+            const closeBtn = document.querySelector('.knowledge-modal-close');
+            const knowledgeCards = document.querySelectorAll('.knowledge-card');
+            
+            knowledgeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const knowledgeId = this.getAttribute('data-knowledge');
+                    const knowledge = knowledgeDB[knowledgeId];
+                    
+                    if (knowledge) {
+                        // Cria um clone do card para animação
+                        const cardClone = document.createElement('div');
+                        cardClone.className = 'card-clone';
+                        
+                        // Copia o conteúdo do card original
+                        cardClone.innerHTML = this.innerHTML;
+                        
+                        // Obtém a posição do card original
+                        const rect = this.getBoundingClientRect();
+                        
+                        // Posiciona o clone exatamente sobre o card original
+                        cardClone.style.width = `${rect.width}px`;
+                        cardClone.style.height = `${rect.height}px`;
+                        cardClone.style.top = `${rect.top}px`;
+                        cardClone.style.left = `${rect.left}px`;
+                        
+                        document.body.appendChild(cardClone);
+                        
+                        // Prepara o modal
+                        document.getElementById('modalIcon').innerHTML = knowledge.icon;
+                        document.getElementById('modalTitle').textContent = knowledge.title;
+                        document.getElementById('modalLevel').textContent = knowledge.level;
+                        document.getElementById('modalBody').innerHTML = knowledge.description;
+                        
+                        // Desabilita o scroll da página
+                        document.body.style.overflow = 'hidden';
+                        
+                        // Ativa a animação do clone
+                        setTimeout(() => {
+                            cardClone.style.top = '50%';
+                            cardClone.style.left = '50%';
+                            cardClone.style.transform = 'translate(-50%, -50%)';
+                            cardClone.style.width = '90%';
+                            cardClone.style.height = 'auto';
+                            cardClone.style.maxWidth = '800px';
+                            cardClone.style.maxHeight = '90vh';
+                            cardClone.style.borderRadius = '20px';
+                            cardClone.style.backgroundColor = 'rgba(31, 55, 201, 0.2)';
+                            cardClone.style.border = '1px solid var(--accent)';
+                            cardClone.style.boxShadow = '0 15px 50px rgba(76, 201, 240, 0.3)';
+                            cardClone.style.padding = '40px';
+                            
+                            // Mostra o overlay gradualmente
+                            modalOverlay.classList.add('active');
+                            
+                            // Quando a animação do clone terminar
+                            setTimeout(() => {
+                                // Remove o clone
+                                cardClone.remove();
+                                
+                                // Mostra o conteúdo completo do modal
+                                modalContent.style.opacity = '1';
+                                modalContent.style.transform = 'scale(1)';
+                            }, 600);
+                        }, 10);
+                    }
+                });
+            });
+            
+            // Fecha o modal
+            closeBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                modalContent.style.opacity = '0';
+                modalContent.style.transform = 'scale(0.8)';
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Fecha com ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+            
+            // Filtro de conhecimentos
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    knowledgeCards.forEach(card => {
+                        const categories = card.getAttribute('data-category') ? 
+                                        card.getAttribute('data-category').split(',') : 
+                                        [];
+                        
+                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.6s ease-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animação de entrada dos cards
+            function animateCards() {
+                knowledgeCards.forEach((card, index) => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (cardTop < windowHeight * 0.8) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            setTimeout(animateCards, 500);
+            window.addEventListener('scroll', animateCards);
+        });
+
+        // Script para animação ao scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            function checkVisibility() {
+                timelineItems.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (itemTop < windowHeight * 0.8) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Verifica na carga inicial
+            checkVisibility();
+            
+            // Verifica durante o scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
     </script>
-<script src="header.js" defer></script>
+    
+    <script src="header.js" defer></script>
 </body>
 </html>
