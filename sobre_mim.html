@@ -203,6 +203,10 @@
             padding-left: 80px;
         }
         
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: -10%;
+        }
+
         .timeline-content {
             padding: 30px;
             background: white;
@@ -210,6 +214,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             transition: all 0.4s ease;
+            width: 120%; 
+            margin-left: -10%;
         }
         
         .timeline-content:hover {
@@ -272,6 +278,9 @@
             right: -25px;
         }
         
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: -10%; 
+        }
         .timeline-item:nth-child(even) .timeline-icon {
             left: -25px;
         }
@@ -675,8 +684,8 @@
                     <div class="timeline-content">
                         <span class="timeline-date">2024 - Presente</span>
                         <h3 class="timeline-title">Suporte Técnico</h3>
-                        <span class="timeline-company">Metafilm</span>
-                        <p class="timeline-desc">Atualmente na Metafilm, gerencio acessos aos sistemas Datasul, RM, Gládios e TMS, possuindo expertise em processos fiscais e na solução de problemas de hardware e software. Minhas responsabilidades incluem a documentação de incidentes e a implementação de melhorias, o que tem desenvolvido minhas habilidades essenciais em TI. Presto suporte direto aos usuários, combinando conhecimento técnico com um atendimento ao cliente eficaz.</p>
+                        <span class="timeline-company">Diamond Office</span>
+                        <p class="timeline-desc">Atualmente na Diamond, gerencio acessos aos sistemas Datasul, RM, Gládios e TMS, possuindo expertise em processos fiscais e na solução de problemas de hardware e software. Minhas responsabilidades incluem a documentação de incidentes e a implementação de melhorias, o que tem desenvolvido minhas habilidades essenciais em TI. Presto suporte direto aos usuários, combinando conhecimento técnico com um atendimento ao cliente eficaz.</p>
                     </div>
                     <div class="timeline-icon">
                         <i class="fas fa-code"></i>
@@ -736,12 +745,37 @@
                     </div>
                 </div>
                 
-                <!-- C/C++ -->
-                <div class="knowledge-card" data-category="Programação" data-knowledge="cpp">
+                <!-- C -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="c">
                     <div class="knowledge-card-front">
                         <div class="knowledge-icon"><i class="fas fa-code"></i></div>
-                        <h3 class="knowledge-title">C/C++</h3>
+                        <h3 class="knowledge-title">C</h3>
+                        <p class="knowledge-level">Intermediário</p>
+                    </div>
+                </div>
+
+                <!-- C++ -->
+                <div class="knowledge-card" data-category="Programação" data-knowledge="cc">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="knowledge-title">C++</h3>
                         <p class="knowledge-level">Básico</p>
+                    </div>
+                </div>
+
+                <div class="knowledge-card" data-category="Programação" data-knowledge="html">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fab fa-html5"></i></div>
+                        <h3 class="knowledge-title">HTML5</h3>
+                        <p class="knowledge-level">Avançado</p>
+                    </div>
+                </div>
+
+                 <div class="knowledge-card" data-category="Programação" data-knowledge="css">
+                    <div class="knowledge-card-front">
+                        <div class="knowledge-icon"><i class="fab fa-css3-alt"></i></div>
+                        <h3 class="knowledge-title">CSS3</h3>
+                        <p class="knowledge-level">Intermediário</p>
                     </div>
                 </div>
                 
@@ -857,17 +891,17 @@
             java: {
                 title: "Java",
                 icon: '<i class="fab fa-java"></i>',
-                level: "Intermediário",
+                level: "Básico",
                 description: `
-                    <p>Linguagem que utilizo para desenvolvimento de aplicações robustas e escaláveis:</p>
+                    <p>Linguagem que estou aprendendo para desenvolver aplicativos:</p>
                     <ul>
-                        <li>Experiência com Spring Boot para criação de APIs RESTful</li>
-                        <li>Domínio dos princípios SOLID e padrões de projeto</li>
-                        <li>Desenvolvimento de aplicações desktop com JavaFX</li>
-                        <li>Conhecimento em multithreading e programação concorrente</li>
-                        <li>Integração com sistemas legados e bancos de dados</li>
+                        <li>Noções básicas de sintaxe e estrutura da linguagem</li>
+                        <li>Programação Orientada a Objetos (POO): Classes, objetos, métodos, encapsulamento e herança simples</li>
+                        <li>Aplicações simples: Jogos e programas de console como calculadoras e sistemas de cadastro básico</li>
+                        <li>Tratamento de erros: Uso de try-catch para lidar com exceções</li>
+                        <li>Coleções: Introdução a ArrayList e HashMap para armazenar dados</li>
                     </ul>
-                    <p>Meus projetos acadêmicos incluem sistemas de gerenciamento com arquitetura em camadas e boas práticas de engenharia de software.</p>
+                    <p>Atualmente, estou praticando com pequenos projetos para consolidar os fundamentos e evoluir para aplicações mais complexas.</p>
                 `
             },
             javascript: {
@@ -897,25 +931,71 @@
                         <li>Criação de queries complexas com múltiplos joins</li>
                         <li>Otimização de consultas para melhor desempenho</li>
                         <li>Implementação de stored procedures e triggers</li>
-                        <li>Migração e transformação de dados entre sistemas</li>
+                        <li>Exportação e importação de dados</li>
                     </ul>
-                    <p>Experiência prática com MySQL, SQL Server e PostgreSQL em projetos acadêmicos e profissionais.</p>
+                    <p>Experiência prática com MySQL, SQL Server e SQLite em projetos acadêmicos.</p>
                 `
             },
-            cpp: {
-                title: "C/C++",
+            c: {
+                title: "C",
+                icon: '<i class="fas fa-code"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Minha primeira linguagem de programação, utilizada para desenvolvimento de sistemas:</p>
+                    <ul>
+                        <li>Manipulação de ponteiros e gerenciamento manual de memória</li>
+                        <li>Desenvolvimento de algoritmos eficientes e estruturas de dados</li>
+                        <li>Interação com hardware e sistemas embarcados</li>
+                        <li>Uso de bibliotecas padrão para entrada/saída e manipulação de arquivos</li>
+                    </ul>
+                    <p>Utilização em projetos educacionais para compreensão de conceitos fundamentais de computação, desde o baixo nível até abstrações mais complexas.</p>
+                `
+            },
+            cc: {
+                title: "C++",
                 icon: '<i class="fas fa-code"></i>',
                 level: "Básico",
                 description: `
-                    <p>Linguagens fundamentais que me ensinaram os conceitos essenciais da programação:</p>
+                    <p>Minha primeira linguagem de programação, utilizada para desenvolvimento de sistemas:</p>
                     <ul>
-                        <li>Desenvolvimento de algoritmos e estruturas de dados</li>
-                        <li>Gerenciamento manual de memória e ponteiros</li>
-                        <li>Programação orientada a objetos em C++</li>
-                        <li>Interação com hardware de baixo nível</li>
-                        <li>Conceitos de compilação e linking</li>
+                        <li>Manipulação de ponteiros e gerenciamento manual de memória</li>
+                        <li>Desenvolvimento de algoritmos eficientes e estruturas de dados</li>
+                        <li>Interação com hardware e sistemas embarcados</li>
+                        <li>Uso de bibliotecas padrão para entrada/saída e manipulação de arquivos</li>
                     </ul>
-                    <p>Utilizei principalmente em projetos acadêmicos e para entender os fundamentos da computação.</p>
+                    <p>Utilização em projetos educacionais para compreensão de conceitos fundamentais de computação, desde o baixo nível até abstrações mais complexas.</p>
+                `
+            },
+
+            html: {
+                title: "HTML5",
+                icon: '<i class="fab fa-html5"></i>',
+                level: "Avançado",
+                description: `
+                    <p>Domínio completo da linguagem de marcação para construção de interfaces web profissionais:</p>
+                    <ul>
+                        <li>Estruturação otimizada para SEO com tags semânticas (article, section, nav, etc..)</li>
+                        <li>Templates dinâmicos para CMS (WordPress, Drupal)</li>
+                        <li>Integração com JavaScript (data attributes, DOM manipulation)</li>
+                        <li>HTML modular e reutilizável</li>
+                    </ul>
+                    <p>Transformo designs complexos em HTML eficiente, com foco em semântica, performance e acessibilidade.</p>
+                `
+            },
+
+            css: {
+                title: "CSS3",
+                icon: '<i class="fab fa-css3-alt"></i>',
+                level: "Intermediário",
+                description: `
+                    <p>Conhecimento sólido em estilização web com capacidade de implementar layouts responsivos e efeitos visuais:</p>
+                    <ul>
+                        <li>Criação de UI components (buttons, modals, tooltips)</li>
+                        <li>Estilização de formulários acessíveis</li>
+                        <li>Landing pages responsivas</li>
+                        <li>Animações e transições CSS (keyframes, transform)</li>
+                    </ul>
+                    <p>Transformo designs em código mantível, com foco em organização e adaptabilidade.</p>
                 `
             },
             arduino: {
@@ -958,7 +1038,7 @@
                     <p>Sistema ERP que utilizo no suporte técnico profissional:</p>
                     <ul>
                         <li>Gerenciamento de usuários e perfis de acesso</li>
-                        <li>Resolução de problemas em módulos fiscais e financeiros</li>
+                        <li>Diagnóstico e correção de problemas funcionais no sistema</li>
                         <li>Parametrização básica do sistema</li>
                         <li>Extração de relatórios e dados</li>
                         <li>Integração com outros sistemas corporativos</li>
@@ -969,7 +1049,7 @@
             rm: {
                 title: "RM",
                 icon: '<i class="fas fa-cogs"></i>',
-                level: "Intermediário",
+                level: "Básico",
                 description: `
                     <p>Sistema de gestão de relacionamento que domino no contexto profissional:</p>
                     <ul>
@@ -985,15 +1065,14 @@
             tms: {
                 title: "TMS",
                 icon: '<i class="fas fa-truck"></i>',
-                level: "Intermediário",
+                level: "Avançado",
                 description: `
                     <p>Sistema de gerenciamento de transporte com que trabalho atualmente:</p>
                     <ul>
-                        <li>Configuração de rotas e parâmetros de frete</li>
-                        <li>Monitoramento de frotas e entregas</li>
-                        <li>Resolução de problemas operacionais</li>
-                        <li>Geração de relatórios e indicadores</li>
-                        <li>Integração com outros sistemas logísticos</li>
+                        <li>Configuração avançada do sistema: parametrização completa de fretes, tabelas de preços, impostos (ICMS, ISS) e regras fiscais</li>
+                        <li>Integração sistêmica: conexão e sincronização de dados entre TMS e ERP Datasul (pedidos, notas fiscais, cadastros)</li>
+                        <li>Gestão de banco de dados: realização de ajustes diretos via SQL para correções e otimizações</li>
+                        <li>Suporte especializado: resolução de problemas complexos e treinamento de usuários</li>
                     </ul>
                     <p>Experiência prática no suporte diário aos usuários e operação do sistema.</p>
                 `
