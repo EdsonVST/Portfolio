@@ -87,8 +87,8 @@
         }
         
         .filter-btn {
-            background: rgba(255,255,255,0.15);
-            color: white;
+            background: #4361ee;
+            color: rgb(0, 0, 0);
             border: none;
             padding: 10px 20px;
             border-radius: 50px;
@@ -99,7 +99,7 @@
         }
         
         .filter-btn:hover, .filter-btn.active {
-            background: rgba(255,255,255,0.3);
+            background: #4362eea9;
             transform: translateY(-3px);
         }
         
@@ -178,6 +178,7 @@
         .project-description {
             color: #555;
             text-indent: 30px;
+            text-align: justify;
             margin-bottom: 20px;
             line-height: 1.6;
             flex: 1;
@@ -347,19 +348,18 @@
         <div class="container">
             <h1>Meus Projetos</h1>
             <p>Explore meu trabalho criativo e técnico. Cada projeto representa um desafio único e uma solção inovadora.</p>
-            
-            <div class="project-filters">
+        </div>
+    </section>
+    
+    <!-- Grid de Projetos -->
+    <section class="projects-section">
+         <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="python">Python</button>
                 <button class="filter-btn" data-filter="c++">C++</button>
                 <button class="filter-btn" data-filter="node.js">Node.js</button>
                 <button class="filter-btn" data-filter="web">Web</button>
             </div>
-        </div>
-    </section>
-    
-    <!-- Grid de Projetos -->
-    <section class="projects-section">
         <div class="container">
             <div class="projects-grid">
                <!-- Projeto Destaque: project-card featured-project -->
@@ -377,7 +377,7 @@
                     <div class="project-content">
                         <h2 class="project-title">FreeGaze</h2>
                         <p class="project-description">
-                            O FreeGaze é um sistema de automação residencial controlado por rastreamento ocular, desenvolvido para promover independência e acessibilidade a pessoas com deficiências motoras graves. Combinando visão computacional (OpenCV) e hardware embarcado (Raspberry Pi), o projeto permite que usuários controlem luzes, eletrodomésticos e dispositivos inteligentes apenas com o movimento dos olhos, eliminando a necessidade de voz ou gestos manuais.
+                            Desenvolvido para revolucionar a acessibilidade digital, o FreeGaze é um sistema inovador de automação residencial controlado inteiramente por movimentos oculares, destinado a oferecer independência a pessoas com deficiências motoras severas. Utilizando uma combinação de visão computacional (OpenCV) e hardware embarcado (Raspberry Pi), a solução permite o controle preciso de iluminação, eletrodomésticos e dispositivos IoT sem exigir comandos de voz ou interação física.
                         </p>
                         <div class="project-buttons">
                            <!-- 
@@ -405,7 +405,7 @@
                     <div class="project-content">
                         <h2 class="project-title">E-Eco</h2>
                         <p class="project-description">
-                           E-Eco é uma plataforma web inovadora que impulsiona a economia circular de eletrônicos. Conectando doadores e receptores através de um sistema gamificado, a plataforma desenvolvida em Node.js combate o lixo eletrônico ao incentivar a reutilização e o reparo de dispositivos. Usuários são recompensados com pontos trocáveis por benefícios, tornando a sustentabilidade gratificante.
+                           O E-Eco é uma plataforma web inovadora que promove a economia circular de dispositivos eletrônicos, conectando doadores, receptores e reparadores em um ecossistema colaborativo. Desenvolvida em Node.js, a solução combate o descarte inadequado de e-lixo ao incentivar a reutilização, reparo e reciclagem de forma gamificada, tornando a sustentabilidade acessível e recompensadora.
                         </p>
                         
                         <div class="project-buttons">
@@ -432,7 +432,7 @@
                     <div class="project-content">
                         <h2 class="project-title">Semáforo adaptativo</h2>
                         <p class="project-description">
-                           Desenvolvi um sistema de semáforos adaptativos utilizando Arduino e Tinkercad, projetado para reduzir congestionamentos em cruzamentos urbanos. O protótipo emprega sensores simulados que detectam o fluxo de veículos e ajustam dinamicamente os tempos dos sinais, priorizando vias com maior movimento.
+                           Sistema de semáforos inteligentes e adaptativos utilizando Arduino e Tinkercad, projetado para otimizar o fluxo de veículos em cruzamentos urbanos e reduzir congestionamentos. O protótipo emprega sensores simulados (como detectores de presença ou contagem de veículos) para monitorar o tráfego em tempo real e ajustar dinamicamente os tempos dos sinais, priorizando vias com maior movimento.
                         </p>
                         
                         <div class="project-buttons">
