@@ -137,11 +137,14 @@
 
   <div class="filter-dropdown" id="filterDropdown">
     <label><input type="checkbox" value="python"> Python</label>
-    <label><input type="checkbox" value="c++"> C++</label>
+    <label><input type="checkbox" value="c"> C/C++</label>
     <label><input type="checkbox" value="raspberry"> Raspberry Pi</label>
     <label><input type="checkbox" value="node"> Node.js</label> 
     <label><input type="checkbox" value="postgresql"> PostgreSQL</label> 
     <label><input type="checkbox" value="docker"> Docker</label> 
+    <label><input type="checkbox" value="freertos"> FreeRTOS</label> 
+    <label><input type="checkbox" value="embarcados"> Embarcados</label> 
+
   </div>
 </div>
 
@@ -151,7 +154,7 @@
 
   <div class="projects-carousel" id="projectsCarousel">
 
-    <div class="project-card" data-tags="python raspberry c++">
+    <div class="project-card" data-tags="python raspberry c">
       <div class="project-image">
         <img src="/image/FreeGaze.jpg" alt="Projeto 1">
       </div>
@@ -176,32 +179,32 @@
       </div>
     </div>
 
-    <div class="project-card" data-tags="node postgresql docker">
+    <div class="project-card" data-tags="freertos c embarcados">
       <div class="project-image">
-        <img src="/image/E-Eco.png" alt="Projeto 1">
+        <img src="/image/Lasc.jpg" alt="Projeto 1">
       </div>
 
       <div class="project-content">
-        <h3 class="project-title">E-Eco</h3>
+        <h3 class="project-title">LASC 2025</h3>
 
         <p class="project-description">
-          Plataforma web que conecta doação, reparo e reutilização de eletrônicos, promovendo economia circular sustentável.
+         Projeto aeroespacial com desenvolvimento de satélite e sistema embarcado de foguete usando FreeRTOS
         </p>
 
-        <div class="project-tags">
-          <span>Node.js</span>
-          <span>PostgreSQL</span>
-          <span>Docker</span>
+        <div class="project-tags" data-tags="node">
+          <span>FreeRTOS</span>
+          <span>C</span>
+          <span>Embarcados</span>
         </div>
 
         <div class="project-actions">
-          <a href="#" class="btn demo" target="_blank">Demo</a>
-          <a href="https://github.com/dangerprogrammer/web-backend" class="btn code" target="_blank">Código</a>
+          <a href="#" class="btn demo">Demo</a>
+          <a href="#" class="btn code">Código</a>
         </div>
       </div>
     </div>
 
-    <div class="project-card" data-tags="c++ arduino">
+    <div class="project-card" data-tags="c arduino">
       <div class="project-image">
         <img src="/image/semaforo.png" alt="Projeto 1">
       </div>
@@ -227,23 +230,22 @@
 
 
 
-
-    <div class="project-card" data-tags="python raspberry c++">
+    <div class="project-card" data-tags="python c embarcados">
       <div class="project-image">
-        <img src="/image/FreeGaze.jpg" alt="Projeto 1">
+        <img src="/image/AgroDrone.jpeg" alt="Projeto 1">
       </div>
 
       <div class="project-content">
-        <h3 class="project-title">FreeGaze</h3>
+        <h3 class="project-title">AgroDrone</h3>
 
         <p class="project-description">
-          Um sistema de automação por movimentos oculares, promovendo acessibilidade e autonomia.
+        Drone agrícola com sistema embarcado automatizado, baixo custo e foco em agricultura de precisão. 
         </p>
 
-        <div class="project-tags" data-tags="node">
+        <div class="project-tags">
           <span>Python</span>
-          <span>C++</span>
-          <span>Raspberry Pi</span>
+          <span>C</span>
+          <span>Embarcados</span>
         </div>
 
         <div class="project-actions">
@@ -272,32 +274,8 @@
         </div>
 
         <div class="project-actions">
-          <a href="#" class="btn demo">Demo</a>
-          <a href="#" class="btn code">Código</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" data-tags="c++ arduino">
-      <div class="project-image">
-        <img src="/image/semaforo.png" alt="Projeto 1">
-      </div>
-
-      <div class="project-content">
-        <h3 class="project-title">Semáforo Adaptativo</h3>
-
-        <p class="project-description">
-         Sistema de semáforos inteligentes que ajusta sinais em tempo real para otimizar o tráfego urbano e reduzir congestionamentos.
-        </p>
-
-        <div class="project-tags">
-          <span>C++</span>
-          <span>Arduino</span>
-        </div>
-
-        <div class="project-actions">
-          <a href="#" class="btn demo">Demo</a>
-          <a href="#" class="btn code">Código</a>
+          <a href="#" class="btn demo" target="_blank">Demo</a>
+          <a href="https://github.com/dangerprogrammer/web-backend" class="btn code" target="_blank">Código</a>
         </div>
       </div>
     </div>
