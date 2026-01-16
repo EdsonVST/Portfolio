@@ -1070,3 +1070,62 @@ section {
     gap: 16px;
   }
 }
+
+
+
+
+/* Zoom suave na imagem */
+.project-card:hover .project-image img {
+  transform: scale(1.08);
+}
+
+/* Animação suave */
+.project-image img {
+  transition: transform 0.5s ease;
+}
+
+/* Destaque no título */
+.project-card:hover .project-title {
+  color: var(--orange);
+}
+
+/* Leve fade nos textos */
+.project-content {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-content {
+  transform: translateY(-4px);
+}
+
+
+.project-actions .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.project-tags span,
+.skills-tags span {
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.project-tags span:hover,
+.skills-tags span:hover {
+  background: var(--orange);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+
+.tech-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tech-icon:hover {
+  transform: translateY(-6px) scale(1.1);
+}
+
+
+
